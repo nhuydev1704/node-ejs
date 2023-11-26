@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>Edit BangDia - <%= bangDia.tenBangDia %></title>
+  </head>
+  <body>
+    <h2>Edit BangDia</h2>
+    <form action="/bangDia/<%= bangDia.id %>" method="post">
+      <input name="_method" type="hidden" value="put" />
+      <label for="title">tenBangDia</label>
+      <input
+        type="text"
+        id="tenBangDia"
+        name="tenBangDia"
+        value="<%= bangDia.tenBangDia %>"
+      />
+      <br />
+      <br />
+      <label for="theLoai">theLoai</label>
+      <input
+        type="text"
+        name="theLoai"
+        id="theLoai"
+        value="<%= bangDia.theLoai %>"
+      />
+      <br />
+      <br />
+      <label for="nhaSX">nhaSX</label>
+      <input type="text" name="nhaSX" id="nhaSX" value="<%= bangDia.nhaSX %>" />
+      <br /><br />
+      <br />
+      <label for="noiDung">noiDung</label>
+      <input
+        type="text"
+        name="noiDung"
+        id="noiDung"
+        value="<%= bangDia.noiDung %>"
+      />
+      <br /><br />
+      <br />
+      <label for="gia">gia</label>
+      <input type="number" name="gia" id="gia" value="<%= bangDia.gia %>" />
+      <br /><br />
+      <button type="submit">Update</button>
+    </form>
+    <br />
+    <a href="/bangDia">back</a>
+    <br />
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <title>BangDia</title>
+  </head>
+
+  <body>
+    <h1>Get All BangDia</h1>
+
+    <% if (typeof deleted !=='undefined' ) { %> <%if (deleted=='true' ) { %>
+    <div style="color: green">Deleted Successfully</div>
+    <% } %>
+    <br />
+    <% } %>
+
+    <form action="/bangDia" method="get">
+      <input type="text" name="tenBangDia" placeholder="Enter tenBangDia" />
+      <button type="submit">Search</button>
+    </form>
+    <br />
+    <a href="/bangDia/create">insert</a>
+    <br />
+
+    <table border="1" cellpadding="0" cellspacing="0">
+      <tr>
+        <th>ID</th>
+        <th>tenBangDia</th>
+        <th>theLoai</th>
+        <th>nhaSX</th>
+        <th>noiDung</th>
+        <th>gia</th>
+        <th>Action</th>
+      </tr>
+      <% bangDias.forEach((item)=> { %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.tenBangDia %></td>
+        <td><%= item.theLoai %></td>
+        <td><%= item.nhaSX %></td>
+        <td><%= item.noiDung %></td>
+        <td><%= item.gia %></td>
+        <td>
+          <a href="/bangDia/edit/<%= item.id %>">Edit</a> <br />
+          <a href="/bangDia/delete/<%= item.id %>">Delete</a>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+    <br />
+    <a href="/">back</a>
+    <br />
+  </body>
+</html>
