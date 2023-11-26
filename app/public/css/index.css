@@ -1,7 +1,321 @@
+
+* {
+  font-family: 'Quicksand', sans-serif !important; 
+}
 body {
-  text-align: center;
-  display: grid;
+    text-align: center;
+    display: grid;
 }
 .table-bangDia {
-  margin-top: 20px;
+    margin-top: 20px;
 }
+.main {
+    background-color: #fff;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+#sidebar {
+    width: 220px;
+    background-color: #f6f8fc;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content {
+    flex: 1;
+    padding: 20px;
+}
+
+.email-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.email-list-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.email-list-item > .title {
+  font-size: 15px;
+  display: flex;
+  justify-content: start;
+}
+
+.email-list-item > .title.first {
+  width: 250px;
+}
+
+
+
+
+.email-list-item:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.checkbox {
+    margin-right: 10px;
+}
+
+.trash-icon {
+    margin-left: auto;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/*! CSS Used from: Embedded */
+.T-I {
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    cursor: default;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 16px;
+    height: 18px;
+    line-height: 18px;
+    min-width: 54px;
+    outline: 0;
+    padding: 0 8px;
+}
+.z0 .T-I {
+    min-width: 97px;
+    margin-right: 0;
+}
+.T-I-KE {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #db4437;
+    background-image: -webkit-linear-gradient(top, transparent, transparent);
+    background-image: linear-gradient(top, transparent, transparent);
+    border: 1px solid transparent;
+    color: #fff;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+.T-I-KE:focus {
+    -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12),
+        0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12),
+        0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid #fff;
+    border: rgba(0, 0, 0, 0) solid 1px;
+    outline: 1px solid #db4437;
+    outline: rgba(0, 0, 0, 0) 0;
+}
+.T-I-KE:active {
+    -webkit-box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),
+        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),
+        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
+    background-color: #c53929;
+    background-image: -webkit-linear-gradient(top, transparent, transparent);
+    background-image: linear-gradient(top, transparent, transparent);
+    border: 1px solid #992a1b;
+    border-top: 1px solid #992a1b;
+}
+.WR .z0 {
+    height: 40px;
+    margin: 8px 0 8px 0;
+}
+.WR .z0 > .L3 {
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    color: #001d35;
+    height: 40px;
+    padding: 0 24px 0 0;
+    min-width: 96px;
+}
+.WR .z0 > .L3::before {
+    background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/create_gm_red_20_1x.png');
+    -webkit-background-size: 20px;
+    background-size: 20px;
+    height: 40px;
+    min-width: 40px;
+}
+.WR:not(.bhZ) .z0 > .L3::before {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+@media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
+    .WR .z0 > .L3::before {
+        background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/create_gm_red_20_2x.png');
+    }
+}
+.z0 {
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    font-size: medium;
+    height: 48px;
+    margin: 16px 0 16px;
+    padding: 0 0 0 8px;
+}
+.z0 > .L3 {
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.875rem;
+    letter-spacing: normal;
+    -webkit-align-items: center;
+    align-items: center;
+    background-color: #c2e7ff;
+    background-image: none;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    color: #001d35;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    font-weight: 500;
+    height: 40px;
+    min-width: 48px;
+    overflow: hidden;
+    padding: 0 24px 0 0;
+    text-transform: none;
+}
+.z0 > .L3:hover,
+.z0 > .T-I-KE.L3:focus {
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
+    background-color: #c2e7ff;
+}
+.z0 > .L3:active {
+    background-color: #f1f3f4;
+}
+.z0 > .L3::before {
+    background-image: url('https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 32px;
+    content: '';
+    display: block;
+    height: 48px;
+    min-width: 56px;
+}
+.aeN .z0 > .L3 {
+    -webkit-transition: box-shadow 0.08s linear, min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 0.08s linear, min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
+    .z0 > .L3::before {
+        background-image: url('https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 32px;
+        background-image: url('https://www.gstatic.com/images/icons/material/colored_icons/2x/create_32dp.png');
+    }
+}
+.WR .z0 > .L3::before {
+    background-image: url('https://www.gstatic.com/images/icons/material/system_gm/1x/create_black_20dp.png');
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+}
+@media (min-resolution: 144dpi), (-webkit-min-device-pixel-ratio: 1.5) {
+    .WR .z0 > .L3::before {
+        background-image: url('https://www.gstatic.com/images/icons/material/system_gm/2x/create_black_20dp.png');
+    }
+}
+.z0 > .L3 {
+    box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
+}
+.T-I {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    border: none;
+    line-height: 18px;
+    min-width: auto;
+    padding: 0;
+}
+.T-I:not(.T-I-JE) {
+    cursor: pointer;
+}
+.T-I-KE {
+    border: none;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    height: 32px;
+    line-height: 32px;
+    min-width: 48px;
+    padding: 0 16px;
+}
+.T-I-KE:focus,
+.T-I-KE:active {
+    border: none;
+}
+.T-I-KE:focus:not(:active) {
+    background: #c53929;
+}
+.T-I-KE:active {
+    -webkit-transition: background 0.028s cubic-bezier(0.4, 0, 1, 1), box-shadow 0.028s cubic-bezier(0.4, 0, 1, 1);
+    transition: background 0.028s cubic-bezier(0.4, 0, 1, 1), box-shadow 0.028s cubic-bezier(0.4, 0, 1, 1);
+    -webkit-box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),
+        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),
+        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.gap-2 {
+  gap: 8px;
+}
+
+/* sidebar item */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 20px;
+  width: 160px;
+  font-size: 14px;
+  padding: 4px 25px;
+  border-radius: 999px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.sidebar-item.active {
+  background-color: #D3E3FD;
+}
+
+.sidebar-item .bold {
+  font-weight: 600; 
+}
+
+.icon-first {
+  background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/inbox_fill_baseline_p900_20dp.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.icon-second {
+  background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/send_baseline_nv700_20dp.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+

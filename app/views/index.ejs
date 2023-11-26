@@ -1,14 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <br />
-    <a href="/bangDia">Trang quản lý băng đĩa</a>
-    <br />
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/reset.css" />
+
+        <title>Manage email</title>
+    </head>
+    <body>
+        <div class="main">
+            <div id="sidebar">
+                <div class="z0">
+                    <div class="T-I T-I-KE L3" role="button">Soạn thư</div>
+                </div>
+                <div class="sidebar-item active">
+                    <div class="flex gap-2">
+                        <div class="icon-first"></div>
+                        <div class="bold">Hộp thư đến</div>
+                    </div>
+                    <span class="bold">123</span>
+                </div>
+
+                <div class="sidebar-item">
+                    <div class="flex gap-2">
+                        <div class="icon-second"></div>
+                        <div>Đã gửi</div>
+                    </div>
+                </div>
+            </div>
+            <div id="content">
+                <ul class="email-list">
+                    <li class="email-list-item">
+                        <input type="checkbox" class="checkbox" />
+                        <div class="title first">Email 1</div>
+                        <div class="title">Content 1</div>
+                        <span class="trash-icon">12:03 AM</span>
+                    </li>
+                    <li class="email-list-item">
+                        <input type="checkbox" class="checkbox" />
+                        <div class="title first">Email 2</div>
+                        <div class="title">Content 2</div>
+                        <span class="trash-icon">12:03 AM</span>
+                    </li>
+                    <li class="email-list-item">
+                        <input type="checkbox" class="checkbox" />
+                        <div class="title first">Email 3</div>
+                        <div class="title">Content 3</div>
+                        <span class="trash-icon">12:03 AM</span>
+                    </li>
+                    <!-- Add more email list items here -->
+                </ul>
+            </div>
+        </div>
+    </body>
 </html>
