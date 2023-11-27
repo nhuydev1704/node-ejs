@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 const DB_HOST = "127.0.0.1";
 const DB_USER = "wpr";
@@ -42,8 +42,11 @@ const runScript = (connection) => {
         file VARCHAR(255),
         is_read TINYINT DEFAULT 0,
         title TEXT,
+        created_by INT,
+        delete_at INT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
       )
     `;
 

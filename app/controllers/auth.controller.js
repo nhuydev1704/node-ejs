@@ -15,7 +15,7 @@ class AuthCtrl {
 
   login(req, res) {
     // Kiểm tra nếu đã đăng nhập
-    if (req?.session?.user) {
+    if (req?.cookies?.user) {
       return res.redirect("/tin-nhan");
     }
 
@@ -38,7 +38,9 @@ class AuthCtrl {
 
         if (user) {
           // Đăng nhập thành công, lưu thông tin người dùng vào phiên
-          req.session.user = user;
+          // req.session.user = user;
+          res.cookie("user", JSON.stringify(user), { maxAge: 360000000 }); // Set the expiration time as needed
+
           return res.send({
             status: true,
           });
@@ -56,7 +58,12 @@ class AuthCtrl {
   }
   logout(req, res) {
     // Xóa thông tin người dùng khỏi phiên
-    req.session.user = null;
+    res.cookie("user", "", { expires: new Date(0) });
+
+    console.log(
+      "🚀 ~ file: auth.controller.js:62 ~ AuthCtrl ~ logout ~ req.cookies.user:",
+      req.cookies.user
+    );
 
     // Chuyển hướng về trang đăng nhập
     return res.send({

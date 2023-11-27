@@ -48,7 +48,7 @@ class QLUser {
 
   static getAll(req, callback) {
     let query = "SELECT * FROM users WHERE id <> ?";
-    const userIdFromSession = req.session?.user?.id; // Điều này giả sử bạn đã lưu trữ userId trong session
+    const userIdFromSession = JSON.parse(req.cookies.user).id; // Điều này giả sử bạn đã lưu trữ userId trong session
     console.log(
       "🚀 ~ file: user.model.js:52 ~ QLUser ~ getAll ~ userIdFromSession:",
       userIdFromSession

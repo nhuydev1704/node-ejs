@@ -1,63 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-        <link rel="stylesheet" href="/css/index.css" />
-        <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
 
-        <title>Manage email</title>
-    </head>
-    <body>
-        <div class="main">
-            <div id="sidebar">
-                <div>
-                    <div class="z0 flex justify-center">
-                        <div onclick="window.location.href='/tin-nhan/tao-tin'" class="T-I T-I-KE L3" role="button">
-                            Soạn thư
-                        </div>
-                    </div>
-                    <div class="sidebar-item active">
-                        <div class="flex gap-2">
-                            <div class="icon-first"></div>
-                            <div class="bold">Hộp thư đến</div>
-                        </div>
-                        <span class="bold"><%= data?.length > 0 ? data.length : '' %></span>
-                    </div>
-
-                    <div class="sidebar-item">
-                        <div class="flex gap-2">
-                            <div class="icon-second"></div>
-                            <div>Đã gửi</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="btn-logout" onclick="logOut()">Đăng xuất</div>
+    <title>Manage email</title>
+  </head>
+  <body>
+    <div class="main">
+      <div id="sidebar">
+        <div>
+          <div class="z0 flex justify-center">
+            <div
+              onclick="window.location.href='/tin-nhan/tao-tin'"
+              class="T-I T-I-KE L3"
+              role="button"
+            >
+              Soạn thư
             </div>
+          </div>
+          <div class="sidebar-item" onclick="window.location.href='/tin-nhan'">
+            <div class="flex gap-2">
+              <div class="icon-first"></div>
+              <div class="bold">Hộp thư đến</div>
+            </div>
+            <span class="bold"><%= data?.length > 0 ? data.length : '' %></span>
+          </div>
 
-            <div id="content">123</div>
+          <div
+            class="sidebar-item"
+            onclick="window.location.href='/tin-nhan/tin-gui'"
+          >
+            <div class="flex gap-2">
+              <div class="icon-second"></div>
+              <div>Đã gửi</div>
+            </div>
+          </div>
         </div>
-        <script>
-            function logOut() {
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', '/logout', true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        window.location.href = '/';
-                    }
-                };
+        <div>
+          <div style="text-align: left; padding: 10px; margin-bottom: 10px">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px">
+              <%= user?.fullName %>
+            </div>
+            <div style="font-size: 12px"><%= user?.email %></div>
+          </div>
+          <div class="btn-logout" onclick="logOut()">Đăng xuất</div>
+        </div>
+      </div>
 
-                // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
-                xhr.send();
-            }
-        </script>
-    </body>
+      <div id="content">
+        <div class="flex" style="gap: 10px; align-items: center">
+          <a href="/tin-nhan"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 12L6.5 12M6.5 12L11.0882 16M6.5 12L11.0882 8"
+                stroke="#363853"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <div class="text-left"><%= detail.title %></div>
+        </div>
+        <div
+          style="
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 6px">
+            <div style="font-weight: 600; font-size: 14px">
+              <%= detail.created_by_user_full_name %>
+            </div>
+            <div style="font-size: 12px">
+              <%= '<' + detail.created_by_user_email + '>' %>
+            </div>
+          </div>
+        </div>
+        <div
+          style="padding: 6px 0; font-size: 12px"
+          class="text-left"
+          style="font-size: 12px"
+        >
+          đến <%= detail.fullName %> - <%= detail.formatted_created_at %>
+        </div>
+        <div style="display: flex; justify-content: start; padding: 10px 20px">
+          <div><%- detail.content %></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function logOut() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/logout", true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            window.location.href = "/";
+          }
+        };
+
+        // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
+        xhr.send();
+      }
+    </script>
+  </body>
 </html>
