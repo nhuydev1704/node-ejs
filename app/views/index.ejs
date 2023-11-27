@@ -1,65 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-        <link rel="stylesheet" href="/css/index.css" />
-        <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/register.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
 
-        <title>Manage email</title>
-    </head>
-    <body>
-        <div class="main">
-            <div id="sidebar">
-                <div class="z0">
-                    <div class="T-I T-I-KE L3" role="button">Soạn thư</div>
-                </div>
-                <div class="sidebar-item active">
-                    <div class="flex gap-2">
-                        <div class="icon-first"></div>
-                        <div class="bold">Hộp thư đến</div>
-                    </div>
-                    <span class="bold">123</span>
-                </div>
+    <!-- Toastify CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
 
-                <div class="sidebar-item">
-                    <div class="flex gap-2">
-                        <div class="icon-second"></div>
-                        <div>Đã gửi</div>
-                    </div>
-                </div>
+    <!-- Your existing CSS and other head elements -->
+
+    <!-- Your existing script tags -->
+
+    <!-- Toastify JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+
+    <title>Đăng nhập</title>
+  </head>
+  <body>
+    <div class="main">
+      <section class="sign-in">
+        <div class="container">
+          <div class="signin-content">
+            <div class="signin-image">
+              <figure>
+                <img
+                  src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg"
+                  alt="sing up image"
+                />
+              </figure>
+              <a href="/register" class="signup-image-link"
+                >Đăng ký tài khoản</a
+              >
             </div>
-            <div id="content">
-                <ul class="email-list">
-                    <li class="email-list-item">
-                        <input type="checkbox" class="checkbox" />
-                        <div class="title first">Email 1</div>
-                        <div class="title">Content 1</div>
-                        <span class="trash-icon">12:03 AM</span>
-                    </li>
-                    <li class="email-list-item">
-                        <input type="checkbox" class="checkbox" />
-                        <div class="title first">Email 2</div>
-                        <div class="title">Content 2</div>
-                        <span class="trash-icon">12:03 AM</span>
-                    </li>
-                    <li class="email-list-item">
-                        <input type="checkbox" class="checkbox" />
-                        <div class="title first">Email 3</div>
-                        <div class="title">Content 3</div>
-                        <span class="trash-icon">12:03 AM</span>
-                    </li>
-                    <!-- Add more email list items here -->
-                </ul>
+            <div class="signin-form">
+              <h2 class="form-title">Đăng nhập</h2>
+              <form
+                method="POST"
+                action="/login"
+                class="register-form"
+                id="login-form"
+              >
+                <div class="form-group">
+                  <label for="email"
+                    ><svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.30225 6.5004L10.0825 10.63C11.2295 11.4496 12.7705 11.4496 13.9175 10.63L19.6977 6.5004M2.88539 15.1513C2.37154 13.0819 2.37154 10.9181 2.88539 8.84875C3.55805 6.13984 5.70602 4.04534 8.43056 3.44162L8.88443 3.34105C10.9366 2.88632 13.0634 2.88632 15.1156 3.34105L15.5694 3.44162C18.294 4.04534 20.442 6.13984 21.1146 8.84876C21.6285 10.9182 21.6285 13.0819 21.1146 15.1512C20.442 17.8602 18.294 19.9547 15.5694 20.5584L15.1156 20.659C13.0634 21.1137 10.9366 21.1137 8.88443 20.659L8.43055 20.5584C5.70601 19.9547 3.55805 17.8602 2.88539 15.1513Z"
+                        stroke="#363853"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Địa chỉ email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="your_pass"
+                    ><svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.6531 17.0263L3.95839 17.3089L3.95839 17.3089L4.6531 17.0263ZM4.30609 11.3971L5.03006 11.593L4.30609 11.3971ZM19.6939 11.3971L18.9699 11.593L19.6939 11.3971ZM19.3469 17.0263L20.0416 17.3089V17.3089L19.3469 17.0263ZM14.0365 20.8418L13.9206 20.1008L14.0365 20.8418ZM9.96352 20.8418L10.0794 20.1008L9.96352 20.8418ZM8.65619 7.60213L8.50672 6.86718L8.65619 7.60213ZM15.3438 7.60213L15.4933 6.86718L15.4933 6.86718L15.3438 7.60213ZM9.21479 20.7247L9.0989 21.4657L9.21479 20.7247ZM4.74598 17.2546L5.44069 16.972L5.44069 16.972L4.74598 17.2546ZM14.7852 20.7247L14.9011 21.4657L14.7852 20.7247ZM19.254 17.2546L18.5593 16.972V16.972L19.254 17.2546ZM15.6199 7.65829L15.4705 8.39324L15.4705 8.39324L15.6199 7.65829ZM8.38009 7.65829L8.52956 8.39324L8.38009 7.65829ZM6.89397 7.43059C6.89397 7.84481 7.22976 8.18059 7.64397 8.18059C8.05819 8.18059 8.39397 7.84481 8.39397 7.43059H6.89397ZM7.64397 7.12771H6.89397H7.64397ZM16.356 7.12772H15.606H16.356ZM15.606 7.4306C15.606 7.84481 15.9418 8.1806 16.356 8.1806C16.7702 8.1806 17.106 7.84481 17.106 7.4306H15.606ZM10.8517 3.14126L10.6697 2.41368L10.6697 2.41368L10.8517 3.14126ZM13.1482 3.14126L13.3302 2.41368V2.41368L13.1482 3.14126ZM8.52956 8.39324L8.80567 8.33709L8.50672 6.86718L8.23062 6.92333L8.52956 8.39324ZM15.1943 8.33709L15.4705 8.39324L15.7694 6.92333L15.4933 6.86718L15.1943 8.33709ZM14.6693 19.9837L13.9206 20.1008L14.1523 21.5828L14.9011 21.4657L14.6693 19.9837ZM10.0794 20.1008L9.33068 19.9837L9.0989 21.4657L9.84762 21.5828L10.0794 20.1008ZM18.6522 16.7437L18.5593 16.972L19.9487 17.5373L20.0416 17.3089L18.6522 16.7437ZM5.44069 16.972L5.3478 16.7437L3.95839 17.3089L4.05128 17.5373L5.44069 16.972ZM5.34781 16.7437C4.67941 15.1008 4.56858 13.2988 5.03006 11.593L3.58212 11.2013C3.03465 13.2248 3.1667 15.363 3.95839 17.3089L5.34781 16.7437ZM18.9699 11.593C19.4314 13.2987 19.3206 15.1008 18.6522 16.7437L20.0416 17.3089C20.8333 15.363 20.9654 13.2248 20.4179 11.2012L18.9699 11.593ZM13.9206 20.1008C12.6486 20.2997 11.3514 20.2997 10.0794 20.1008L9.84762 21.5828C11.2732 21.8057 12.7268 21.8057 14.1523 21.5828L13.9206 20.1008ZM8.80567 8.33709C10.9118 7.90875 13.0882 7.90875 15.1943 8.33709L15.4933 6.86718C13.1899 6.39872 10.8101 6.39872 8.50672 6.86718L8.80567 8.33709ZM9.33068 19.9837C7.55628 19.7062 6.08366 18.5524 5.44069 16.972L4.05128 17.5373C4.90076 19.6253 6.82633 21.1102 9.0989 21.4657L9.33068 19.9837ZM14.9011 21.4657C17.1736 21.1102 19.0992 19.6253 19.9487 17.5373L18.5593 16.972C17.9163 18.5524 16.4437 19.7062 14.6693 19.9837L14.9011 21.4657ZM15.4705 8.39324C17.1912 8.7432 18.5368 9.99212 18.9699 11.593L20.4179 11.2012C19.8298 9.02766 18.0205 7.38115 15.7694 6.92333L15.4705 8.39324ZM8.23062 6.92333C5.97952 7.38115 4.17018 9.02766 3.58212 11.2013L5.03006 11.593C5.46317 9.99212 6.80883 8.7432 8.52956 8.39324L8.23062 6.92333ZM8.39397 7.43059V7.12771H6.89397V7.43059H8.39397ZM15.606 7.12772V7.4306H17.106V7.12772H15.606ZM11.0337 3.86884C11.6672 3.71039 12.3328 3.71039 12.9662 3.86884L13.3302 2.41368C12.4578 2.19544 11.5422 2.19544 10.6697 2.41368L11.0337 3.86884ZM17.106 7.12772C17.106 4.88982 15.535 2.96519 13.3302 2.41368L12.9662 3.86884C14.5399 4.2625 15.606 5.61508 15.606 7.12772H17.106ZM8.39397 7.12771C8.39397 5.61508 9.46002 4.2625 11.0337 3.86884L10.6697 2.41368C8.46497 2.96519 6.89397 4.88982 6.89397 7.12771H8.39397Z"
+                        fill="#363853"
+                      />
+                      <path
+                        d="M12 13.5L12 15.5"
+                        stroke="#363853"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Mật khẩu"
+                  />
+                </div>
+
+                <div class="form-group form-button">
+                  <input
+                    type="button"
+                    name="signin"
+                    id="signin"
+                    class="form-submit"
+                    value="Đăng nhập"
+                    onclick="submitForm()"
+                  />
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-    </body>
+      </section>
+    </div>
+    <script>
+      function validateForm() {
+        const email = document.getElementById("email")?.value;
+        const password = document.getElementById("password")?.value;
+
+        if (!email) {
+          alert("Vui lòng nhập địa chỉ email.");
+          return false;
+        }
+        if (!password) {
+          alert("Vui lòng nhập mật khẩu");
+          return false;
+        }
+
+        return {
+          email,
+          password,
+        };
+      }
+
+      function submitForm() {
+        const formData = validateForm();
+
+        if (formData) {
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "/login", true);
+          xhr.setRequestHeader("Content-Type", "application/json"); // Đặt kiểu dữ liệu là JSON
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              // Xử lý kết quả từ server (nếu cần)
+              //   alert(xhr.responseText);
+              const data = JSON.parse(xhr.response);
+              if (data.status) {
+                Toastify({
+                  text: "Đăng nhập thành công!",
+                  duration: 3000, // Thời gian hiển thị (3 giây)
+                  close: true,
+                  gravity: "top", // Vị trí hiển thị
+                  position: "right",
+                  backgroundColor:
+                    "linear-gradient(to right, #00b09b, #96c93d)",
+                }).showToast();
+
+                setTimeout(() => {
+                  window.location.href = "/tin-nhan";
+                }, 1000);
+              } else {
+                Toastify({
+                  text: "Sai tài khoản mật khẩu!",
+                  duration: 3000, // Thời gian hiển thị (3 giây)
+                  close: true,
+                  gravity: "top", // Vị trí hiển thị
+                  position: "right",
+                  backgroundColor: "linear-gradient(to right, red, red)",
+                }).showToast();
+              }
+            }
+          };
+
+          // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
+          xhr.send(JSON.stringify(formData));
+        }
+      }
+    </script>
+  </body>
 </html>

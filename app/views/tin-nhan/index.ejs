@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+
+    <title>Manage email</title>
+  </head>
+  <body>
+    <div class="main">
+      <div id="sidebar">
+        <div>
+          <div class="z0 flex justify-center">
+            <div
+              onclick="window.location.href='/tin-nhan/tao-tin'"
+              class="T-I T-I-KE L3"
+              role="button"
+            >
+              Soạn thư
+            </div>
+          </div>
+          <div class="sidebar-item active">
+            <div class="flex gap-2">
+              <div class="icon-first"></div>
+              <div class="bold">Hộp thư đến</div>
+            </div>
+            <span class="bold"><%= data?.length > 0 ? data.length : '' %></span>
+          </div>
+
+          <div class="sidebar-item">
+            <div class="flex gap-2">
+              <div class="icon-second"></div>
+              <div>Đã gửi</div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-logout" onclick="logOut()">Đăng xuất</div>
+      </div>
+
+      <div id="content">
+        <% if (data.length > 0) { %>
+        <ul class="email-list">
+          <% data.forEach((message, index) => { %>
+          <li class="email-list-item">
+            <input type="checkbox" class="checkbox" />
+            <div class="title first <%= !message.is_read ? 'bold' : '' %>">
+              <%= message.fullName %>
+            </div>
+            <div class="title <%= !message.is_read ? 'bold' : '' %>">
+              <%- message.content %>
+            </div>
+            <span class="trash-icon <%= !message.is_read ? 'bold' : '' %>"
+              ><%= message.formatted_created_at %></span
+            >
+          </li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        <p>Danh sách thư đến rỗng !</p>
+        <% } %>
+      </div>
+    </div>
+    <script>
+      function logOut() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/logout", true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            window.location.href = "/";
+          }
+        };
+
+        // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>

@@ -1,9 +1,19 @@
 require("dotenv/config");
 const express = require("express");
 const methodOverride = require("method-override");
+const session = require("express-session");
+const { checkSession } = require("./app/utils");
+const path = require("path");
+
 const app = express();
 const port = 3000;
-
+app.use(
+  session({
+    secret: "your_secret_key", // Thay thế bằng chuỗi bí mật thực tế
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 app.set("view engine", "ejs");
 app.set("views", "app/views");
 app.use(express.static("app/public"));
@@ -19,8 +29,12 @@ app.use(
     }
   })
 );
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
 
-app.get("/", (req, res) => {
+app.get("/", checkSession, (req, res) => {
   res.render("index");
 });
 app.get("/500", (req, res) => {

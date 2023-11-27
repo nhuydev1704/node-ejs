@@ -1,7 +1,5 @@
 
-* {
-  font-family: 'Quicksand', sans-serif !important; 
-}
+
 body {
     text-align: center;
     display: grid;
@@ -17,12 +15,29 @@ body {
 }
 
 #sidebar {
-    width: 220px;
+    width: 240px;
     background-color: #f6f8fc;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background-color: #c2e7ff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.btn-logout:hover {
+    opacity: .7;
 }
 
 #content {
@@ -49,6 +64,12 @@ body {
   justify-content: start;
 }
 
+.title.bold,
+.trash-icon.bold
+{
+    font-weight: bold;
+}
+
 .email-list-item > .title.first {
   width: 250px;
 }
@@ -68,8 +89,9 @@ body {
 .trash-icon {
     margin-left: auto;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 14px;
 }
+
 
 /*! CSS Used from: Embedded */
 .T-I {
@@ -260,16 +282,21 @@ body {
 .T-I-KE:active {
     -webkit-transition: background 0.028s cubic-bezier(0.4, 0, 1, 1), box-shadow 0.028s cubic-bezier(0.4, 0, 1, 1);
     transition: background 0.028s cubic-bezier(0.4, 0, 1, 1), box-shadow 0.028s cubic-bezier(0.4, 0, 1, 1);
-    -webkit-box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),
-        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),
-        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12),        0px 5px 5px -3px rgba(0, 0, 0, 0.2);
+    -moz-transition: background 0.028s cubic-bezier(0.4, 0, 1, 1), box-shadow 0.028s cubic-bezier(0.4, 0, 1, 1);
+    -ms-transition: background 0.028s cubic-bezier(0.4, 0, 1, 1), box-shadow 0.028s cubic-bezier(0.4, 0, 1, 1);
+    -o-transition: background 0.028s cubic-bezier(0.4, 0, 1, 1), box-shadow 0.028s cubic-bezier(0.4, 0, 1, 1);
 }
 
 
 .flex {
   display: flex;
   align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
 }
 
 .gap-2 {
@@ -281,6 +308,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: left;
+  cursor: pointer;
   gap: 20px;
   width: 160px;
   font-size: 14px;
@@ -290,10 +318,13 @@ body {
   -moz-border-radius: 999px;
   -ms-border-radius: 999px;
   -o-border-radius: 999px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .sidebar-item.active {
+  background-color: #D3E3FD;
+}
+.sidebar-item:hover {
   background-color: #D3E3FD;
 }
 
