@@ -39,13 +39,16 @@ class TinNhanCtrl {
     }
 
     taoTin(req, res) {
-        QLUser.getAll(req, (err, data) => {
-            if (err) res.redirect('/500');
-            else
-                res.render('tin-nhan/create', {
-                    data,
-                    user: JSON.parse(req.cookies.user),
-                });
+        QLTN.getAll('', req, (err, dataAll) => {
+            QLUser.getAll(req, (err, data) => {
+                if (err) res.redirect('/500');
+                else
+                    res.render('tin-nhan/create', {
+                        data,
+                        dataAll,
+                        user: JSON.parse(req.cookies.user),
+                    });
+            });
         });
     }
 
