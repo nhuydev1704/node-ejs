@@ -1,191 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-    <link rel="stylesheet" href="/css/paging.css" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/paging.css" />
+        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/reset.css" />
 
-    <title>Manage email</title>
-  </head>
-  <body>
-    <div class="main">
-      <div id="sidebar">
-        <div>
-          <div class="z0 flex justify-center">
-            <div
-              onclick="window.location.href='/tin-nhan/tao-tin'"
-              class="T-I T-I-KE L3"
-              role="button"
-            >
-              Soạn thư
-            </div>
-          </div>
-          <div class="sidebar-item active">
-            <div class="flex gap-2">
-              <div class="icon-first"></div>
-              <div class="bold">Hộp thư đến</div>
-            </div>
-            <span class="bold"><%= data?.length > 0 ? data.length : '' %></span>
-          </div>
+        <title>Manage email</title>
+    </head>
+    <body>
+        <div class="main">
+            <div id="sidebar">
+                <div>
+                    <div class="z0 flex justify-center">
+                        <div onclick="window.location.href='/tin-nhan/tao-tin'" class="T-I T-I-KE L3" role="button">
+                            Soạn thư
+                        </div>
+                    </div>
+                    <div class="sidebar-item active">
+                        <div class="flex gap-2">
+                            <div class="icon-first"></div>
+                            <div class="bold">Hộp thư đến</div>
+                        </div>
+                        <span class="bold"><%= data?.length > 0 ? data.length : '' %></span>
+                    </div>
 
-          <div
-            class="sidebar-item"
-            onclick="window.location.href='/tin-nhan/tin-gui'"
-          >
-            <div class="flex gap-2">
-              <div class="icon-second"></div>
-              <div>Đã gửi</div>
+                    <div class="sidebar-item" onclick="window.location.href='/tin-nhan/tin-gui'">
+                        <div class="flex gap-2">
+                            <div class="icon-second"></div>
+                            <div>Đã gửi</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="text-align: left; padding: 10px; margin-bottom: 10px">
+                        <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px"><%= user?.fullName %></div>
+                        <div style="font-size: 12px"><%= user?.email %></div>
+                    </div>
+                    <div class="btn-logout" onclick="logOut()">Đăng xuất</div>
+                </div>
             </div>
-          </div>
+
+            <div id="content">
+                <div class="flex" style="justify-content: start; margin-bottom: 10px">
+                    <button id="deleteBtn" onclick="deleteSelected()" style="display: none">Xoá tin đã chọn</button>
+                </div>
+
+                <% if (data.length > 0) { %>
+                <div>
+                    <ul class="email-list">
+                        <% dataFilter.forEach((message, index) => { %>
+                        <li class="email-list-item" id="message_<%= message.id %>">
+                            <input
+                                type="checkbox"
+                                class="checkbox"
+                                data-message-id="<%= message.id %>"
+                                onchange="toggleDeleteButton()"
+                            />
+                            <div
+                                onclick="window.location.href='/tin-nhan/chi-tiet?id=<%= message.id %>'"
+                                class="title first <%= !message.is_read ? 'bold' : '' %>"
+                            >
+                                <%= message.created_by_user_full_name %>
+                            </div>
+                            <div class="flex" style="justify-content: space-between; width: 100%">
+                                <div
+                                    onclick="window.location.href='/tin-nhan/chi-tiet?id=<%= message.id %>'"
+                                    style="display: flex; gap: 5px"
+                                    class="title <%= !message.is_read ? 'bold' : '' %>"
+                                >
+                                    <span style="font-size: 15px"><%- message.title %></span>
+
+                                    <!-- <span>-</span> <span><%- message.content %></span> -->
+                                </div>
+                                <div class="flex" style="font-size: 14px; gap: 10px">
+                                    <% if (message.file) { %>
+                                    <!-- Hiển thị icon file khi có file đính kèm -->
+                                    <div><div class="yE">.</div></div>
+                                    <% } %>
+                                    <span><%= message.formatted_created_at %></span>
+                                </div>
+                            </div>
+                        </li>
+                        <% }); %>
+                    </ul>
+                    <!-- Pagination Logic -->
+                    <% const pageSize = 5; const totalPages = Math.ceil(count / pageSize); const currentPage = page ||
+                    1; %>
+
+                    <!-- Pagination Links -->
+                    <div id="pagination">
+                        <li>
+                            <% if (totalPages > 1) { %> <% for (let i = 1; i <= totalPages; i++) { %>
+                            <a href="/tin-nhan?page=<%= i %>" class="<%= i == page ? 'active' : '' %>"> <%= i %> </a>
+                            <% } %> <% } %>
+                        </li>
+                    </div>
+                </div>
+                <% } else { %>
+                <p>Danh sách thư đến rỗng !</p>
+                <% } %>
+            </div>
         </div>
-        <div>
-          <div style="text-align: left; padding: 10px; margin-bottom: 10px">
-            <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px">
-              <%= user?.fullName %>
-            </div>
-            <div style="font-size: 12px"><%= user?.email %></div>
-          </div>
-          <div class="btn-logout" onclick="logOut()">Đăng xuất</div>
-        </div>
-      </div>
+        <script>
+            function toggleDeleteButton() {
+                const checkboxes = document.querySelectorAll('.checkbox');
+                const deleteButton = document.getElementById('deleteBtn');
 
-      <div id="content">
-        <button id="deleteBtn" onclick="deleteSelected()" style="display: none">
-          Delete Selected
-        </button>
+                // Check if at least one checkbox is checked
+                const atLeastOneChecked = Array.from(checkboxes).some((checkbox) => checkbox.checked);
 
-        <% if (dataFilter.length > 0) { %>
-        <div>
-          <ul class="email-list">
-            <% dataFilter.forEach((message, index) => { %>
-            <li class="email-list-item" id="message_<%= message.id %>">
-              <input
-                type="checkbox"
-                class="checkbox"
-                data-message-id="<%= message.id %>"
-                onchange="toggleDeleteButton()"
-              />
-              <div
-                onclick="window.location.href='/tin-nhan/chi-tiet?id=<%= message.id %>'"
-                class="title first <%= !message.is_read ? 'bold' : '' %>"
-              >
-                <%= message.created_by_user_full_name %>
-              </div>
-              <div
-                onclick="window.location.href='/tin-nhan/chi-tiet?id=<%= message.id %>'"
-                style="display: flex; gap: 5px"
-                class="title <%= !message.is_read ? 'bold' : '' %>"
-              >
-                <span><%- message.title %></span>
+                // Toggle the visibility of the delete button based on the checked status
+                deleteButton.style.display = atLeastOneChecked ? 'inline-block' : 'none';
+            }
 
-                <!-- <span>-</span> <span><%- message.content %></span> -->
-              </div>
-              <span class="trash-icon <%= !message.is_read ? 'bold' : '' %>"
-                ><%= message.formatted_created_at %></span
-              >
-            </li>
-            <% }); %>
-          </ul>
-          <!-- Pagination Logic -->
-          <% const pageSize = 5; // Set the number of items per page const
-          totalPages = Math.ceil(count / pageSize); // Calculate total pages
-          const currentPage = page || 1; // Get the current page or default to 1
-          %>
+            function deleteSelected() {
+                const checkboxes = document.querySelectorAll('.checkbox:checked');
+                const messageIds = Array.from(checkboxes).map((checkbox) => checkbox.dataset.messageId);
 
-          <!-- Pagination Links -->
-          <div id="pagination">
-            <li>
-              <% if (totalPages > 1) { %> <% for (let i = 1; i <= totalPages;
-              i++) { %>
-              <a
-                href="/tin-nhan?page=<%= i %>"
-                class="<%= i == page ? 'active' : '' %>"
-              >
-                <%= i %>
-              </a>
-              <% } %> <% } %>
-            </li>
-          </div>
-        </div>
-        <% } else { %>
-        <p>Danh sách thư đến rỗng !</p>
-        <% } %>
-      </div>
-    </div>
-    <script>
-      function toggleDeleteButton() {
-        const checkboxes = document.querySelectorAll(".checkbox");
-        const deleteButton = document.getElementById("deleteBtn");
+                // Send the selected message IDs to the server using an API endpoint
+                // You may use fetch or another method to send the data to the server
 
-        // Check if at least one checkbox is checked
-        const atLeastOneChecked = Array.from(checkboxes).some(
-          (checkbox) => checkbox.checked
-        );
+                fetch('/tin-nhan/delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ messageIds }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Handle the response from the server (e.g., update UI)
+                        console.log(data);
+                        messageIds.forEach((messageId) => {
+                            const messageElement = document.getElementById(`message_${messageId}`);
+                            if (messageElement) {
+                                messageElement.remove();
+                            }
+                        });
 
-        // Toggle the visibility of the delete button based on the checked status
-        deleteButton.style.display = atLeastOneChecked
-          ? "inline-block"
-          : "none";
-      }
+                        // Hide the delete button after deletion
+                        document.getElementById('deleteBtn').style.display = 'none';
+                    })
+                    .catch((error) => console.error('Error:', error));
+            }
+        </script>
+        <script>
+            function logOut() {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '/logout', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        window.location.href = '/';
+                    }
+                };
 
-      function deleteSelected() {
-        const checkboxes = document.querySelectorAll(".checkbox:checked");
-        const messageIds = Array.from(checkboxes).map(
-          (checkbox) => checkbox.dataset.messageId
-        );
-
-        // Send the selected message IDs to the server using an API endpoint
-        // You may use fetch or another method to send the data to the server
-
-        fetch("/tin-nhan/delete", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ messageIds }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            // Handle the response from the server (e.g., update UI)
-            console.log(data);
-            messageIds.forEach((messageId) => {
-              const messageElement = document.getElementById(
-                `message_${messageId}`
-              );
-              if (messageElement) {
-                messageElement.remove();
-              }
-            });
-
-            // Hide the delete button after deletion
-            document.getElementById("deleteBtn").style.display = "none";
-          })
-          .catch((error) => console.error("Error:", error));
-      }
-    </script>
-    <script>
-      function logOut() {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "/logout", true);
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            window.location.href = "/";
-          }
-        };
-
-        // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
-        xhr.send();
-      }
-    </script>
-  </body>
+                // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
+                xhr.send();
+            }
+        </script>
+    </body>
 </html>

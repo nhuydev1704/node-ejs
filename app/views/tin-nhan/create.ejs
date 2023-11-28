@@ -1,150 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/tao-tin.css" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.0/tinymce.min.js" integrity="sha512-SOoMq8xVzqCe9ltHFsl/NBPYTXbFSZI6djTMcgG/haIFHiJpsvTQn0KDCEv8wWJFu/cikwKJ4t2v1KbxiDntCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-     tinymce.init({
-        selector: "textarea#my-expressjs-tinymce-app",
-        plugins: "lists link image table code help wordcount",
-      });
-      </script>
-    <title>Manage email</title>
-  </head>
-  <body>
-    <div class="main">
-      <div id="sidebar">
-        <div>
-          <div class="z0 flex justify-center">
-            <div class="T-I T-I-KE L3" role="button">Soạn thư</div>
-          </div>
-          <div class="sidebar-item" onclick="window.location.href='/tin-nhan'">
-            <div class="flex gap-2">
-              <div class="icon-first"></div>
-              <div class="bold">Hộp thư đến</div>
-            </div>
-            <span class="bold"><%= data?.length > 0 ? data.length : '' %></span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-          <div class="sidebar-item" 
-          onclick="window.location.href='/tin-nhan/tin-gui'"
-          >
-            <div class="flex gap-2">
-              <div class="icon-second"></div>
-              <div>Đã gửi</div>
-            </div>
-          </div>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/tao-tin.css" />
+  <link rel="stylesheet" href="/css/index.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.0/tinymce.min.js"
+    integrity="sha512-SOoMq8xVzqCe9ltHFsl/NBPYTXbFSZI6djTMcgG/haIFHiJpsvTQn0KDCEv8wWJFu/cikwKJ4t2v1KbxiDntCg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    tinymce.init({
+      selector: "textarea#my-expressjs-tinymce-app",
+      plugins: "lists link image table code help wordcount",
+    });
+  </script>
+  <title>Manage email</title>
+</head>
+
+<body>
+  <div class="main">
+    <div id="sidebar">
+      <div>
+        <div class="z0 flex justify-center">
+          <div class="T-I T-I-KE L3" role="button">Soạn thư</div>
         </div>
-        
-        <div>
-          <div style="text-align: left; padding: 10px; margin-bottom: 10px">
-            <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px">
-              <%= user?.fullName %>
-            </div>
-            <div style="font-size: 12px"><%= user?.email %></div>
+        <div class="sidebar-item" onclick="window.location.href='/tin-nhan'">
+          <div class="flex gap-2">
+            <div class="icon-first"></div>
+            <div class="bold">Hộp thư đến</div>
           </div>
-          <div class="btn-logout" onclick="logOut()">Đăng xuất</div>
+          <span class="bold">
+            <%= data?.length> 0 ? data.length : '' %>
+          </span>
+        </div>
+
+        <div class="sidebar-item" onclick="window.location.href='/tin-nhan/tin-gui'">
+          <div class="flex gap-2">
+            <div class="icon-second"></div>
+            <div>Đã gửi</div>
+          </div>
         </div>
       </div>
 
-      <div class="container-contact100">
-        <div class="wrap-contact100">
-          <div class="contact100-pic js-tilt" data-tilt="">
-            <img
-              src="https://colorlib.com/etc/cf/ContactFrom_v12/images/img-01.png"
-              alt="IMG"
-            />
+      <div>
+        <div style="text-align: left; padding: 10px; margin-bottom: 10px">
+          <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px">
+            <%= user?.fullName %>
           </div>
-          <form method="post" action="/tin-nhan/tao-tin" class="contact100-form validate-form">
-            <input
-              type="text"
-              class="form__input"
-              id="name"
-              name="title"
-              placeholder="Tiêu đề"
-            />
+          <div style="font-size: 12px">
+            <%= user?.email %>
+          </div>
+        </div>
+        <div class="btn-logout" onclick="logOut()">Đăng xuất</div>
+      </div>
+    </div>
 
-            <input id="userIdInput" type="hidden" name="user_id">
+    <div class="container-contact100">
+      <div class="wrap-contact100">
+        <div class="contact100-pic js-tilt" data-tilt="">
+          <img src="https://colorlib.com/etc/cf/ContactFrom_v12/images/img-01.png" alt="IMG" />
+        </div>
+        <form method="post" enctype="multipart/form-data" action="/tin-nhan/tao-tin"
+          class="contact100-form validate-form">
+          <input type="text" class="form__input" id="name" name="title" placeholder="Tiêu đề" />
 
-            <div style="margin: 10px 0">
-              <label class="select" for="slct">
-                <select  onchange="updateUserInput()"  id="slct" required="required">
-                    <option value="" disabled="disabled" selected="selected">Người nhận</option>
-                    <% data.forEach((recipient) => { %>
-                      <option value="<%= recipient.id %>"><%= recipient.fullName %></option>
-                    <% }); %>
-                  </select>
-                  <use xlink:href="#select-arrow-down"></use>
-                </svg>
-              </label>
-              <!-- SVG Sprites-->
-              <svg class="sprites">
-                <symbol id="select-arrow-down" viewbox="0 0 10 6">
-                  <polyline points="1 1 5 5 9 1"></polyline>
-                </symbol>
+          <input id="userIdInput" type="hidden" name="user_id">
+
+          <div style="margin: 10px 0">
+            <label class="select" for="slct">
+              <select onchange="updateUserInput()" id="slct" required="required">
+                <option value="" disabled="disabled" selected="selected">Người nhận</option>
+                <% data.forEach((recipient)=> { %>
+                  <option value="<%= recipient.id %>">
+                    <%= recipient.fullName %>
+                  </option>
+                  <% }); %>
+              </select>
+              <use xlink:href="#select-arrow-down"></use>
               </svg>
-            </div>
-            <div
-              class="wrap-input100 validate-input"
-              data-validate="Message is required"
-            >
-              <!-- Text area matching the selector specified in the TinyMCE configuration -->
-              <textarea name="content" id="my-expressjs-tinymce-app">Hello, World!</textarea>
-            </div>
-            <div
-              style="
+            </label>
+            <!-- SVG Sprites-->
+            <svg class="sprites">
+              <symbol id="select-arrow-down" viewbox="0 0 10 6">
+                <polyline points="1 1 5 5 9 1"></polyline>
+              </symbol>
+            </svg>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate="Message is required">
+            <!-- Text area matching the selector specified in the TinyMCE configuration -->
+            <textarea name="content" id="my-expressjs-tinymce-app">Hello, World!</textarea>
+          </div>
+          <div style="
                 margin: 10px 0;
                 font-size: 14px;
                 gap: 10px;
                 display: flex;
                 justify-content: start;
                 align-items: center;
-              "
-            >
-              Đính kèm: <input type="file" name="file" id="file" />
-            </div>
-            <div class="container-contact100-form-btn">
-              <button id="btn">
-                <div id="btnText">Submit</div>
-              </button>
-            </div>
-          </form>
-        </div>
+              ">
+            Đính kèm: <input type="file" name="file" id="file" />
+          </div>
+          <div class="container-contact100-form-btn">
+            <button id="btn">
+              <div id="btnText">Submit</div>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    <script>
-         function updateUserInput() {
-            // Lấy giá trị được chọn từ select
-            var selectedUserId = document.getElementById("slct").value;
+  </div>
+  <script>
+    function updateUserInput() {
+      // Lấy giá trị được chọn từ select
+      var selectedUserId = document.getElementById("slct").value;
 
-            // Cập nhật giá trị của trường input
-            document.getElementById("userIdInput").value = selectedUserId;
+      // Cập nhật giá trị của trường input
+      document.getElementById("userIdInput").value = selectedUserId;
+    }
+
+    function logOut() {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "/logout", true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          window.location.href = "/";
         }
+      };
 
-      function logOut() {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "/logout", true);
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            window.location.href = "/";
-          }
-        };
+      // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
+      xhr.send();
+    }
+  </script>
+</body>
 
-        // Chuyển đối tượng dữ liệu thành chuỗi JSON và gửi lên server
-        xhr.send();
-      }
-    </script>
-  </body>
 </html>
